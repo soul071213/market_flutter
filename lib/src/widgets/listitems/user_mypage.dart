@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_flutter/src/models/user_model.dart';
 
 class UserMypage extends StatelessWidget {
   final UserModel user;

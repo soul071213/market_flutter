@@ -4,9 +4,10 @@ class LabelTextfield extends StatelessWidget {
   final String label;
   final String hintText;
   final TextEditingController controller;
-  final bool isObscure;
+  bool isObscure;
+  final int maxLines;
   TextInputType? keyboardType;
-  LabelTextfield({required this.label,required this.hintText,required this.controller,required this.isObscure,this.keyboardType ,super.key});
+  LabelTextfield({this.maxLines=1,required this.label,required this.hintText,required this.controller, this.isObscure,this.keyboardType ,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class LabelTextfield extends StatelessWidget {
         TextField(
           controller: controller,
           obscureText: isObscure,
+          maxLines: maxLines,
           keyboardType: keyboardType,
           style: const TextStyle(fontSize: 16),
           decoration: InputDecoration(

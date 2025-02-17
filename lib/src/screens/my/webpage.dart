@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:market_flutter/src/shared/global.dart';
 
 class Webpage extends StatelessWidget {
   final String title;

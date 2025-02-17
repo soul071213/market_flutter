@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market_flutter/src/screens/auth/intro.dart';
-
+import 'package:market_flutter/src/shared/global.dart';
+import 'package:market_flutter/src/screens/home.dart';
+import 'package:market_flutter/src/screens/intro.dart';
 void main() {
-  runApp(const MainApp());
+  String token = Global.accessToken;
+  bool isLogin = token.isNotEmpty; //토큰이 존재하면 로그인 상태로 판단
+
+  runApp(MainApp(isLogin));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final bool isLogin;
+  const MainApp(this.isLogin,{super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute : isLogin ? '/' : '/intro',
+      routes:{
+        '/' : (context) => const Home(),
+        '/intro' : (context)=>const Intro(),
+        'register' : (context)=>const RegisterScreen(),
+      },
       theme: ThemeData(
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -58,7 +70,6 @@ class MainApp extends StatelessWidget {
           )
         )
       ),
-      home: const Intro(),
     );
   }
 }

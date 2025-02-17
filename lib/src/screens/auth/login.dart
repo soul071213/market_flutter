@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:market_flutter/src/screens/controllers/auth_controller.dart';
+import 'package:market_flutter/src/screens/home.dart';
 import 'package:market_flutter/src/widgets/forms/label_textfield.dart';
 
 class Login extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LoginState extends State<Login> {
       _passwordController.text,
     );
     if(result){
-      // Get.offAll(()=>const Home());
+      Get.offAll(()=>const Home());
     }
   }
 

@@ -2,6 +2,8 @@ import 'dart:async'; // 비동기 작업을 위한 타이머 및 Future를 사�
 import 'package:flutter/material.dart'; // Flutter 위젯 및 Material 디자인 사용
 import 'package:get/get.dart';
 import 'package:market_flutter/src/provider/auth_provider.dart'; // GetX 패키지 사용
+import '../../shared/global.dart';
+import 'dart:developer';
 
 class AuthController extends GetxController {
   // AuthProvider를 의존성으로 주입 (인증 관련 API 호출을 담당)
@@ -114,13 +116,24 @@ class AuthController extends GetxController {
 
   // 로그인 함수 (예시로 항상 true 반환)
   Future<bool> login(String phone, String password) async {
-    return true;
+    Map body=await authProvider.login(phone, password);
+    if(body['result']=='ok'){
+      String token = body['access_token'];
+      log('token : $token');
+      Global.accessToken=token;
+      return true;
+    }
+    Get.snackbar('로그인 에러', body['message'],snackPosition: SnackPosition.BOTTOM);
+    return false;
   }
 
   // 회원가입 함수 (예시로 항상 true 반환)
   Future<bool> register(String password, String name, int? profile) async {
     Map body=await authProvider.register(phoneNumber!,password,name,profile);
     if(body['result']=='ok'){
+      String token = body['access_token'];
+      log("token : $token"); //dart:developer 패키지 내의 log 함수
+      Global.accessToken=token;
       return true;
     }
     Get.snackbar('회원가입에러', body['message'],snackPosition: SnackPosition.BOTTOM);

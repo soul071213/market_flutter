@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:market_flutter/src/models/user_model.dart';
 import 'package:market_flutter/src/screens/my/webpage.dart';
 import 'package:market_flutter/src/widgets/listitems/user_mypage.dart';
 
